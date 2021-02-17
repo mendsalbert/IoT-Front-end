@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./theme";
+import { useState, useEffect } from "react";
+import HomePage from "./components/HomePage/Homepage";
+import AuthPage from "./components/Auth/SignUp";
+import { BrowserRouter, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
+  const authState = useSelector((state) => state.auth.isAuth);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        {authState ? <HomePage /> : <AuthPage />}
+        {/* <AuthPage /> */}
+        {/* <HomePage /> */}
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

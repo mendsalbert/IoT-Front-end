@@ -1,0 +1,69 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Grid from "@material-ui/core/Grid";
+import dateFormate from "dateformat";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+
+const data = [
+  { name: "Monday", temperature: 20, humidity: 31, moisture: "20" },
+  { name: "Tuesday", temperature: 25, humidity: 30, moisture: "22" },
+  { name: "Wednesday", temperature: 22, humidity: 20, moisture: "25" },
+  { name: "Thursday", temperature: 24, humidity: 24, moisture: "30" },
+  { name: "Friday", temperature: 20, humidity: 22, moisture: "40" },
+  { name: "Saturday", temperature: 30, humidity: 25, moisture: "42" },
+  { name: "Sunday", temperature: 31, humidity: 20, moisture: "20" },
+];
+
+const DeviceDetail = (props) => {
+  const [dataDB, setData] = useState({
+    data: [],
+  });
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/device/api/summary/get-summary-data/temperature`
+      )
+      .then((resp) => {
+        
+        setData({ ...dataDB, data: resp.data });
+      });
+  }, []);
+
+  //   const oriDate = dateFormate(dataDB.data.createAt, "h:MM TT");
+  console.log(dataDB);
+  return (
+    <Grid>
+      <LineChart
+        width={1200}
+        height={500}
+        data={dataDB.data}
+        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      >
+        <XAxis dataKey="date" />
+        <YAxis />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Tooltip />
+        <Legend />
+
+        <Line
+          type="monotone"
+          dataKey="temperature"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+        <Line type="monotone" dataKey="humidity" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="moisture" stroke="#34568B" />
+      </LineChart>
+    </Grid>
+  );
+};
+export default DeviceDetail;
