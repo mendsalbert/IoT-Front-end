@@ -114,7 +114,7 @@ export default function MiniDrawer(props) {
   useEffect(() => {
     var token = localStorage.getItem("UserToken");
     axios
-      .get("http://localhost:5000/device/api/all-device", {
+      .get("http://10.10.64.11:5000/device/api/all-device", {
         headers: {
           "x-auth-token": token,
         },
@@ -129,7 +129,7 @@ export default function MiniDrawer(props) {
   useEffect(() => {
     var token = localStorage.getItem("UserToken");
     axios
-      .get("http://localhost:5000/device/api/project/get-project-title", {
+      .get("http://10.10.64.11:5000/device/api/project/get-project-title", {
         headers: {
           "x-auth-token": token,
         },
