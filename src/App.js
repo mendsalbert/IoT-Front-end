@@ -8,7 +8,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
-  const authState = useSelector((state) => state.auth.isAuth);
+  // const authState = useSelector((state) => state.auth.isAuth);
+  const authState = false;
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
