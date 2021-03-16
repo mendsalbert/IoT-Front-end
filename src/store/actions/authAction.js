@@ -33,7 +33,8 @@ export const signUp = (username, email, password) => {
   return async (dispatch) => {
     try {
       axios
-        .post("http://localhost:5000/user/api/sign-up", {
+        .post("http://10.10.64.11:5000/user/api/sign-up", {
+          // .post("http://localhost:5000/user/api/sign-up", {
           name: username,
           email: email,
           password: password,
