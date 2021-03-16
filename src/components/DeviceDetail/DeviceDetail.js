@@ -23,7 +23,7 @@ const DeviceDetail = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/device/api/single-device/${id}`)
+      .get(`http://10.10.64.11:5000/device/api/single-device/${id}`)
       .then((dev) => {
         // const filter = dev.data;
         setSingleDevice({ ...singleDevice, devData: dev.data });

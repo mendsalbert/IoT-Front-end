@@ -29,7 +29,7 @@ export default function AddProduct(props) {
     var token = localStorage.getItem("UserToken");
     axios
       .post(
-        "http://localhost:5000/device/api/project/add-project",
+        "http://10.10.64.11:5000/device/api/project/add-project",
         {
           name: input,
         },
